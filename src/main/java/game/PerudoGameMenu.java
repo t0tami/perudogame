@@ -25,6 +25,7 @@ public class PerudoGameMenu {
                     case 1:
                         GameInterface gameInterface = new GameInterface();
                         gameInterface.startGame();
+                        gameInterface.createAIPlayers();
                         break;
                     case 2:
                         showRules();

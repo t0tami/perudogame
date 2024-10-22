@@ -13,7 +13,6 @@ public class GameInterface {
     private CubeGame cubeGame;
     private static final String NAMES_FILE = "C:\\Users\\Edemskaya.as\\Downloads\\Cubes-master\\Cubes-master\\src\\main\\java\\game\\nickname.txt";
     private static final int NUM_AI_PLAYERS = 3;
-    private static ArrayList<String> aiPlayers;
 
 
 
@@ -36,6 +35,22 @@ public class GameInterface {
         Random random = new Random();
         return names.get(random.nextInt(names.size()));
     }
+    List<Player> createAIPlayers() {
+        List<Player> aiPlayers = new ArrayList<>();
+        List<String> names = loadNamesFromFile();
+        Random random = new Random();
+
+        for (int i = 0; i < NUM_AI_PLAYERS; i++) {
+            int randomIndex = random.nextInt(names.size());
+            String aiName = names.get(randomIndex);
+            Player aiPlayer = new Player(aiName);
+            aiPlayers.add(aiPlayer);
+            System.out.println("Создан игрок-робот: " + aiPlayer.getName());
+        }
+
+        return aiPlayers;
+    }
+
 
     private static List<String> loadNamesFromFile() {
         List<String> names = new ArrayList<>();
@@ -49,16 +64,7 @@ public class GameInterface {
         }
         return names;
 
-        /*aiPlayers = new ArrayList<>();
-        for (int i = 0; i < NUM_AI_PLAYERS; i++) {
-            aiPlayers.add(generateRandomName());
-        }
 
-
-        System.out.println("Ваши противники:");
-        for (String aiName : aiPlayers) {
-            System.out.println(aiName);
-        }*/
 
     }
 
